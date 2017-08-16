@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+  <html>
+   <head>
+      <title>Tracking</title>   
+      <meta http-equiv="refresh" content="30"/>
+	</head>
+	<link rel="icon" href="mrec.jpg" type="image/gif" sizes="20x20">
+  	<h1 align = "center"> Tracking 
+	</h1>
+	<body align = "center" bgcolor="#66ffcc">
+		<script src='https://maps.googleapis.com/maps/api/js?v=3.exp'>
+			</script>
+		<div align = "center" id = "googleMap" style='overflow:hidden;height:500px;width:1050px;'> 
+		<div align = "center" id='gmap_canvas' style='height:500px;width:1050px;'>
+			</div>
+		<style >#gmap_canvas img{max-width:none!important;background:none!important}
+			</style>
+			</div>
+		<style type="text/css">
+			div#googleMap { margin: 0 auto 0 auto; }
+			</style>
+
+<div id="googleMap"><!-- contains map -->
+	<script type='text/javascript'>
+		var lat,lng;
+		lat = 17.310978;
+		lng = 78.441345;
+		var str = "17.298199,78.517227";
+		var res = str.split(",");
+		lat = res[0];
+		lng = res[1];
+		function init_map(){
+			var myOptions = {zoom:11,
+							 center:new google.maps.LatLng(lat,lng),
+							 mapTypeId: google.maps.MapTypeId.ROADMAP
+							 };
+			map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+			marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(lat,lng)});
+			infowindow = new google.maps.InfoWindow({content:'<strong>Real Time Location</strong><br>'});
+			google.maps.event.addListener(marker, 'click', function(){
+																		infowindow.open(map,marker);
+																		});
+			infowindow.open(map,marker);
+			}
+			google.maps.event.addDomListener(window, 'load', init_map);
+		</script></div>
+		</body>
+	</html>
